@@ -40,9 +40,13 @@ class NewAutoSegRep:
 
             if ((inputString[i] == "!") or (inputString[i] == "+") or (inputString[i] == "0") or (inputString[i] == "-")):
                 if ((inputString[i] == "+") or (inputString[i] == "0") or (inputString[i] == "-")):
+                    if  (inputString[i] == "0"):
+                        self.syllableLine = self.syllableLine + "σ"
+                    else:
+                        self.syllableLine = self.syllableLine + inputString[i]
+
                     self.toneLine = self.toneLine + " "
                     self.assocLine = self.assocLine + " "
-                    self.syllableLine = self.syllableLine + inputString[i]
                     if inputString[i] != ("-"):
                         lastTone = ""
                     i += 1
