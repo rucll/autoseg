@@ -1,7 +1,7 @@
 import Autoseg
 
 
-a1 = Autoseg.NewAutoSegRep("L-L")
+a1 = Autoseg.NewAutoSegRep("L0L")
 print(a1.positions)
 print(a1.orderEdges)
 print(a1.assocEdges)

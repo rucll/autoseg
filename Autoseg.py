@@ -20,7 +20,7 @@ class NewAutoSegRep:
         
         while i < stringLength:         # Syllable line: Positions, labels, and order edges
             #self.syllableLine = self.syllableLine + "σ"
-            if ((inputString[i] == "!") or (inputString[i] == "+") or (inputString[i] == "-")):
+            if inputString[i] in "!+-":
                 i+= 1
                 continue
             
@@ -38,15 +38,15 @@ class NewAutoSegRep:
         
         while i < stringLength:         # Tone line: Positions, labels, order edges. Also association edges
 
-            if ((inputString[i] == "!") or (inputString[i] == "+") or (inputString[i] == "0") or (inputString[i] == "-")):
-                if ((inputString[i] == "+") or (inputString[i] == "0") or (inputString[i] == "-")):
-                    if  (inputString[i] == "0"):
+            if inputString[i] in "!+0-":
+
+                if inputString[i] in "+0-":
+                    self.toneLine = self.toneLine + " "
+                    self.assocLine = self.assocLine + " "
+                    if inputString[i] == "0":
                         self.syllableLine = self.syllableLine + "σ"
                     else:
                         self.syllableLine = self.syllableLine + inputString[i]
-
-                    self.toneLine = self.toneLine + " "
-                    self.assocLine = self.assocLine + " "
                     if inputString[i] != ("-"):
                         lastTone = ""
                     i += 1
@@ -68,8 +68,6 @@ class NewAutoSegRep:
 
             if (inputString[i] == lastTone) or ((tone1 == lastTone) and (tone1 != "")): #If tone is same as last
                 self.assocEdges.add((h, i))
-                #self.labels[p] = "σ "
-                #self.orderEdges.add((p-1,p))
                 self.assocLine = self.assocLine + "\\" 
                 
                 if ((tone1 == lastTone) and (tone1 != "")): #(Rising and falling tones), need extra space in lines
